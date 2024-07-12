@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 function SignUp() {
   return (
     <>
@@ -12,7 +15,7 @@ function SignUp() {
             <h1>A wagging tail is the best welcome Home!</h1>
             <p>Sign up with email address</p>
             <input type="text" placeholder="Yourname@gmail.com" />
-            <button>Sign up</button>
+            <Link to="/Explore">Sign up!</Link>
             <p>or continue with</p>
             <button>google</button>
             <button>facebook</button>

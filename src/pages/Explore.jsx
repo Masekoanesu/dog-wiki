@@ -1,3 +1,6 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
 function Explore() {
   const muziObject = { name: "Muzi", image: "../image/muziPic.png" };
   const anesuObject = { name: "Anesu", image: "../image/anesuImage.png" };
@@ -31,6 +34,7 @@ function Explore() {
           {petArray.map((pet, i) => (
             <PetComponent key={i} name={pet.name} image={pet.image} />
           ))}
+          <Link to="/MoreInfo">click a card to learn more about pet!</Link>
         </div>
         <div className="footer">
           <p>Find & Adopt</p>
