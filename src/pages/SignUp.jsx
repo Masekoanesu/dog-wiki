@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../pages/SignUp.css";
 
 function SignUp() {
   return (
     <>
-      <header>
-        <img src="image.jpg" alt="Header Image" />
-        <h1>Pet Finder</h1>
-      </header>
-      <main>
-        <div className="container">
+      <div className="container">
+        <div className="header">
+          <img src="image.jpg" />
+          <h1>Pet Finder</h1>
+        </div>
+        <div className="content">
           <img src="bigpicture.jpg" />
           <div className="text-content">
             <h1>A wagging tail is the best welcome Home!</h1>
@@ -21,10 +22,10 @@ function SignUp() {
             <button>facebook</button>
           </div>
         </div>
-      </main>
-      <footer>
-        <p>Find & adopt</p>
-      </footer>
+        <footer>
+          <p>Find & adopt</p>
+        </footer>
+      </div>
     </>
   );
 }

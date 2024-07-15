@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import SignUp from "./pages/SignUp";
 import Explore from "./pages/Explore";
-import moreInfo from "./pages/MoreInfo";
+import MoreInfo from "./pages/MoreInfo";
 
 function App() {
   return (

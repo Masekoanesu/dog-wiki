@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "../pages/Explore.css";
 function Explore() {
   const muziObject = { name: "Muzi", image: "../image/muziPic.png" };
   const anesuObject = { name: "Anesu", image: "../image/anesuImage.png" };
@@ -28,7 +28,6 @@ function Explore() {
             Furever home, furever friend. Level up your happiness: Adopt a pet
             today!
           </p>
-          <button>Adopt!</button>
         </div>
         <div className="pet-list">
           {petArray.map((pet, i) => (

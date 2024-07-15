@@ -1,0 +1,6 @@
+.container {
+  display: flex;
+  flex: 1;
+  font-family: "Times New Roman", Times, serif;
+  background-color: #dad3cb;
+}
