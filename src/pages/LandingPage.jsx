@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../pages/LandingPage.css";
+import "../fetching-data.jsx";
 
 function LandingPage() {
   return (

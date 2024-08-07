@@ -4,3 +4,7 @@
   font-family: "Times New Roman", Times, serif;
   background-color: #dad3cb;
 }
+.pet-container {
+  width: 100px;
+  height: auto;
+}
