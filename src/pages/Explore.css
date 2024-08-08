@@ -1,22 +1,42 @@
-/* .container {
-  display: flex;
-  flex: 1;
-  font-family: "Times New Roman", Times, serif;
-  background-color: #dad3cb;
+.container {
+  max-width: 1200px;
+  padding: 10px;
 }
-.pet-container {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  flex: 1;
-  flex: wrap;
-}
-.footer {
+
+h1 {
+  color: black;
   text-align: center;
-  padding: 1rem;
-  background-color: rgb(94, 93, 93);
-} */
-.breed-image {
-  width: 100px;
-  height: 100px;
+  margin-bottom: 20px;
+}
+
+.dogList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.dogItem {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.dogItem h2 {
+  color: black;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.dogItem p {
+  font-size: 1em;
+  color: #555;
+}
+
+.dogImage {
+  max-width: 150px;
+  height: 150px;
+  border-radius: 4px;
 }
