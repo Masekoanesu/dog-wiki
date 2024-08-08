@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  font-family: sans-serif;
+  background-color: #dad3cb;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  flex-direction: row;
+}
+.header img {
+  max-width: 80px;
+  max-height: auto;
+}
+.header h1 {
+  font-family: "Times New Roman", Times, serif;
+  color: #906265;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+.content p {
+  font-size: 3em;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+}
+.image img {
+  margin-right: 4rem;
+}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(94, 93, 93);
+}
