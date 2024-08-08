@@ -1,9 +1,13 @@
 .container {
   display: flex;
-  flex: 1;
   height: 100vh;
   font-family: "Times New Roman", Times, serif;
   background-color: #dad3cb;
+  align-items: center;
+  & button {
+    justify-content: space-between;
+    padding: 8px;
+  }
 }
 .header {
   display: flex;
@@ -28,4 +32,9 @@
 }
 .text-content h1 {
   color: black;
+}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(94, 93, 93);
 }
