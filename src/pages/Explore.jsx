@@ -1,6 +1,7 @@
 // src/Explore.js
 import React, { useEffect, useState } from "react";
 import { fetchBreeds, fetchImagesByBreed } from "./FetchingData";
+import { Link } from "react-router-dom";
 import "../pages/Explore.css";
 
 function Explore() {
@@ -35,18 +36,27 @@ function Explore() {
       <div className="dogList">
         {breeds.map((breed) => (
           <div key={breed.id} className="dogItem">
-            <h2>{breed.name}</h2>
-            <p>{breed.temperament}</p>
-            {images[breed.id] && (
-              <img
-                src={images[breed.id].url}
-                alt={breed.name}
-                className="dogImage"
-              />
-            )}
+            <Link to="/MoreInfo">
+              <h2>{breed.name}</h2>
+              <p>{breed.temperament}</p>
+              {images[breed.id] && (
+                <img
+                  src={images[breed.id].url}
+                  alt={breed.name}
+                  className="dogImage"
+                />
+              )}
+            </Link>
           </div>
         ))}
       </div>
+      {/* <footer className="footer">
+        <p>
+          &copy;{" "}
+          <FontAwesomeIcon icon={faPaw} size="1px" style={{ color: "black" }} />{" "}
+          2024 Dogs 101. All rights reserved.
+        </p>
+      </footer> */}
     </div>
   );
 }
