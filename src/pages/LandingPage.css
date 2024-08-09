@@ -41,12 +41,21 @@
   line-height: 1.6;
   margin-bottom: 20px;
 }
+.navigateButton {
+  background-color: #383b48;
+  color: white;
+}
+.navigateButton:hover {
+  background-color: #666;
+  color: #383b48;
+}
 
 .footer {
   width: 100%;
   height: fit-content;
   margin-top: 40px;
-  color: #ffffff;
+  color: #120a0a;
   font-size: 14px;
   text-align: center;
+  bottom: 0;
 }

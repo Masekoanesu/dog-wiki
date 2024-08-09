@@ -1,8 +1,9 @@
-// src/Explore.js
 import React, { useEffect, useState } from "react";
 import { fetchBreeds, fetchImagesByBreed } from "./FetchingData";
 import { Link } from "react-router-dom";
 import "../pages/Explore.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaw } from "@fortawesome/free-solid-svg-icons";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
@@ -50,13 +51,12 @@ function Explore() {
           </div>
         ))}
       </div>
-      {/* <footer className="footer">
+      <footer className="footer">
         <p>
-          &copy;{" "}
-          <FontAwesomeIcon icon={faPaw} size="1px" style={{ color: "black" }} />{" "}
+          <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />{" "}
           2024 Dogs 101. All rights reserved.
         </p>
-      </footer> */}
+      </footer>
     </div>
   );
 }
