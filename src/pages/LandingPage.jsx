@@ -11,7 +11,7 @@ function LandingPage() {
   return (
     <div className="Container">
       <h1>Welcome to Dogs 101</h1>
-      <div className="body">
+      <div className="mainContent">
         {/* <p>
             Discover Every Dog Breed and Learn About Their Unique
             Characteristics

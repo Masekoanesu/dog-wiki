@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import "../pages/Explore.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
+import Autocomplete from "@mui/material/Autocomplete";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
   const [images, setImages] = useState({});
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredBreeds, setFilteredBreeds] = useState([]);
 
   useEffect(() => {
     async function loadData() {
@@ -26,20 +31,44 @@ function Explore() {
       }, {});
 
       setImages(imageMap);
+      setFilteredBreeds(breedData);
     }
 
     loadData();
   }, []);
 
+  useEffect(() => {
+    const results = breeds.filter((breed) =>
+      breed.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredBreeds(results);
+  }, [searchQuery, breeds]);
+
+  const handleSearchChange = (event, value) => {
+    setSearchQuery(value);
+  };
+
   return (
     <div className="container">
-      <h1>Dog Breeds with Images</h1>
+      <div className="header">
+        <h1>Dog Breeds with Images</h1>
+        <Stack spacing={2} sx={{ width: 300 }}>
+          <Autocomplete
+            freeSolo
+            options={breeds.map((breed) => breed.name)}
+            value={searchQuery}
+            onInputChange={handleSearchChange}
+            renderInput={(params) => (
+              <TextField {...params} label="Search for dog breed" />
+            )}
+          />
+        </Stack>
+      </div>
       <div className="dogList">
-        {breeds.map((breed) => (
+        {filteredBreeds.map((breed) => (
           <div key={breed.id} className="dogItem">
             <Link to="/MoreInfo">
               <h2>{breed.name}</h2>
-              <p>{breed.temperament}</p>
               {images[breed.id] && (
                 <img
                   src={images[breed.id].url}
@@ -47,6 +76,7 @@ function Explore() {
                   className="dogImage"
                 />
               )}
+              <p>{breed.temperament}</p>
             </Link>
           </div>
         ))}
