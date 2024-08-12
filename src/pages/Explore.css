@@ -1,22 +1,81 @@
-/* .container {
-  display: flex;
-  flex: 1;
-  font-family: "Times New Roman", Times, serif;
-  background-color: #dad3cb;
-}
-.pet-container {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  flex: 1;
-  flex: wrap;
-}
-.footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: rgb(94, 93, 93);
+/* html,
+body {
+  height: 100%;
+  margin: 0;
 } */
-.breed-image {
-  width: 100px;
-  height: 100px;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 100hw;
+  min-height: 100vh;
+  padding: 10px;
+  background-color: #dad3cb;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 3rem;
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #dad3cb;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.dogList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  flex: 1;
+}
+
+.dogItem {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.dogItem h2 {
+  color: black;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.dogItem p {
+  font-size: 1em;
+  color: #555;
+}
+
+.dogImage {
+  max-width: 150px;
+  height: 150px;
+  border-radius: 4px;
+}
+
+.footer {
+  padding: 10px;
+  background-color: #f1f1f1;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
 }
