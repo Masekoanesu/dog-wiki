@@ -3,7 +3,6 @@ body {
   height: 100%;
   margin: 0;
 }
-
 .container {
   display: flex;
   flex-direction: column;
@@ -46,22 +45,12 @@ body {
   z-index: 996;
 }
 
-.header .search-field {
-  display: flex;
-  align-items: center;
-  max-width: 500px; /* Optional: Limits search field width */
-}
-
-.header .search-field .MuiAutocomplete-root {
-  width: 100%;
-}
-
 .dogList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
   flex: 1;
-  margin-top: 20px; /* Adds margin to avoid overlap with header */
+  margin-top: 20px;
 }
 
 .dogItem {

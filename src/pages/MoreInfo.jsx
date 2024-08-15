@@ -1,49 +1,92 @@
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import "./MoreInfo.css"; // Import the CSS file
 
-function MoreInfo() {
+const MoreInfo = () => {
+  const { breedId } = useParams();
+  const [breed, setBreed] = useState(null);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function loadBreedData() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const breedData = await fetchBreeds();
+        const selectedBreed = breedData.find((b) => b.id === parseInt(breedId));
+
+        if (selectedBreed) {
+          setBreed(selectedBreed);
+          const breedImages = await fetchImagesByBreed(breedId);
+          setImages(breedImages);
+        } else {
+          setError("Breed not found");
+        }
+      } catch (err) {
+        setError("Failed to load data");
+      }
+
+      setLoading(false);
+    }
+
+    loadBreedData();
+  }, [breedId]);
+
+  if (loading) {
+    return <div className="loading">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
+
   return (
-    <>
-      <div className="container">
-        <div className="header">
-          <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />
-          <h1>Pet Fider</h1>
-        </div>
-        <div className="body">
+    <div className="moreInfoContainer">
+      <div className="header">
+        <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />
+        <h2>{breed.name}</h2>
+      </div>
+      {breed && (
+        <div className="moreInfoContent">
           <div className="images">
-            <div className="big image">
-              <img src="image.jpg" />
-            </div>
-            <div className="small images">
-              <img src="image.jpg" />
-              <img src="image.jpg" />
-              <img src="image.jpg" />
+            <div className="bigImage">
+              {images[0] && <img src={images[0].url} alt="No image found" />}
             </div>
           </div>
           <div className="list">
-            <h2>About pet.name</h2>
-            <li>Species:</li>
-            <li>Sex:</li>
-            <li>Breed:</li>
-            <li>Size:</li>
-            <li>Age:</li>
-            <li>special needs:</li>
-            <li>Color:</li>
+            <h2>About {breed.name}</h2>
+            <ul>
+              <li>Breed: {breed.name}</li>
+              <li>
+                Height: imperial "{breed.height.imperial}" and metric "
+                {breed.height.metric}"
+              </li>
+              <li>
+                Description: {breed.description || "Description unavailable"}
+              </li>
+              <li>Bred For: {breed.bred_for || "Unknown"}</li>
+              <li>Breed Group: {breed.breed_group || "Unknown"}</li>
+              <li>Life Span: {breed.life_span || "Unknown"}</li>
+              <li>Temperament: {breed.temperament || "Unknown"}</li>
+              <li>History: {breed.history || "Unknown"}</li>
+            </ul>
           </div>
         </div>
-        <div className="footer">
-          <p>
-            <FontAwesomeIcon
-              icon={faPaw}
-              size="xs"
-              style={{ color: "black" }}
-            />{" "}
-            2024 Dogs 101. All rights reserved.
-          </p>
-        </div>
+      )}
+      <div className="footer">
+        <p>
+          <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />
+          2024 Dogs 101. All rights reserved.
+        </p>
       </div>
-    </>
+    </div>
   );
-}
+};
 
 export default MoreInfo;

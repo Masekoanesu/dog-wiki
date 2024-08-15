@@ -23,8 +23,7 @@ function Explore() {
       setBreeds(breedData);
       setFilteredBreeds(breedData);
 
-      // Fetch images
-      setLoadingImages(true); // Start loading images
+      setLoadingImages(true);
       const imagePromises = breedData.map(async (breed) => {
         const imageData = await fetchImagesByBreed(breed.id);
         return { breed, image: imageData[0] };
@@ -37,7 +36,7 @@ function Explore() {
       }, {});
 
       setImages(imageMap);
-      setLoadingImages(false); // End loading images
+      setLoadingImages(false);
     }
 
     loadData();
@@ -65,7 +64,29 @@ function Explore() {
             value={searchQuery}
             onInputChange={handleSearchChange}
             renderInput={(params) => (
-              <TextField {...params} label="Search for dog breed" />
+              <TextField
+                {...params}
+                label="Search for dog breed"
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: "#A9A9A9", // text color
+                    "&.Mui-focused": {
+                      color: "black", // text color when field selected
+                    },
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#A9A9A9", // border color default
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "black", // border hover color
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "black", // border when selected
+                    },
+                  },
+                }}
+              />
             )}
           />
         </Stack>
@@ -82,11 +103,21 @@ function Explore() {
           />
         </Box>
       )}
-
       <div className="dogList">
         {filteredBreeds.map((breed) => (
           <div key={breed.id} className="dogItem">
-            <Link to="/MoreInfo">
+            {/* <Link to={"/MoreInfo/${breed.id}"}>
+              <h2>{breed.name}</h2>
+              <p>{breed.temperament}</p>
+              {images[breed.id] && (
+                <img
+                  src={images[breed.id].url}
+                  alt={breed.name}
+                  className="dogImage"
+                />
+              )}
+            </Link> */}
+            <Link to={`/MoreInfo/${breed.id}`}>
               <h2>{breed.name}</h2>
               <p>{breed.temperament}</p>
               {images[breed.id] && (
