@@ -3,6 +3,7 @@ body {
   height: 100%;
   margin: 0;
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -11,8 +12,8 @@ body {
   padding: 10px;
   background-color: #dad3cb;
   margin: 0 auto;
-  padding-top: 90px;
-  padding-bottom: 20px;
+  padding-top: 80px;
+  padding: 50px;
 }
 
 .header {
@@ -23,7 +24,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -32,10 +33,9 @@ body {
 
 .header h1 {
   margin: 0;
-  font-size: 3rem;
+  font-size: 1.5rem; 
   color: black;
   text-align: left;
-  flex: 1;
 }
 
 .progressBar {
@@ -47,7 +47,10 @@ body {
 
 .dogList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(200px, 1fr)
+  ); 
   gap: 15px;
   flex: 1;
   margin-top: 20px;
@@ -64,18 +67,18 @@ body {
 
 .dogItem h2 {
   color: black;
-  font-size: 1.2em;
+  font-size: 1.1rem; 
   margin: 10px 0;
 }
 
 .dogItem p {
-  font-size: 1em;
+  font-size: 0.9rem; 
   color: #555;
 }
 
 .dogImage {
-  max-width: 150px;
-  height: 150px;
+  max-width: 100%;
+  height: auto;
   border-radius: 4px;
 }
 
@@ -88,4 +91,52 @@ body {
   bottom: 0;
   width: 100%;
   z-index: 1000;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.2rem; 
+  }
+
+  .dogList {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(150px, 1fr)
+    ); 
+  }
+
+  .dogItem h2 {
+    font-size: 1rem; 
+  }
+
+  .dogItem p {
+    font-size: 0.8rem; 
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1rem; 
+  }
+
+  .dogList {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(100px, 1fr)
+    ); /
+  }
+
+  .dogItem h2 {
+    font-size: 0.9rem; 
+  }
+
+  .dogItem p {
+    font-size: 0.7rem; 
+  }
+
+  .footer {
+    font-size: 0.8rem; 
+    padding: 15px; 
+  }
 }

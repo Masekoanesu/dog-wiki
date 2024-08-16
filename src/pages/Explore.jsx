@@ -106,17 +106,6 @@ function Explore() {
       <div className="dogList">
         {filteredBreeds.map((breed) => (
           <div key={breed.id} className="dogItem">
-            {/* <Link to={"/MoreInfo/${breed.id}"}>
-              <h2>{breed.name}</h2>
-              <p>{breed.temperament}</p>
-              {images[breed.id] && (
-                <img
-                  src={images[breed.id].url}
-                  alt={breed.name}
-                  className="dogImage"
-                />
-              )}
-            </Link> */}
             <Link to={`/MoreInfo/${breed.id}`}>
               <h2>{breed.name}</h2>
               <p>{breed.temperament}</p>
@@ -134,7 +123,7 @@ function Explore() {
 
       <footer className="footer">
         <p>
-          <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />
+          <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />{" "}
           2024 Dogs 101. All rights reserved.
         </p>
       </footer>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
-import "./MoreInfo.css"; // Import the CSS file
+import "./MoreInfo.css";
 
 const MoreInfo = () => {
   const { breedId } = useParams();
@@ -37,27 +37,15 @@ const MoreInfo = () => {
 
     loadBreedData();
   }, [breedId]);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
-
   return (
     <div className="moreInfoContainer">
       <div className="header">
-        <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />
         <h2>{breed.name}</h2>
       </div>
       {breed && (
         <div className="moreInfoContent">
-          <div className="images">
-            <div className="bigImage">
-              {images[0] && <img src={images[0].url} alt="No image found" />}
-            </div>
+          <div className="bigImage">
+            {images[0] && <img src={images[0].url} alt="No image found" />}
           </div>
           <div className="list">
             <h2>About {breed.name}</h2>
