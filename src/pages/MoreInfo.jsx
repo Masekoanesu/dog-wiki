@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import CircularIndeterminate from "../components/CircularIndeterminate";
 import "./MoreInfo.css";
 
 const MoreInfo = () => {
@@ -37,18 +38,29 @@ const MoreInfo = () => {
 
     loadBreedData();
   }, [breedId]);
+  if (loading) {
+    return <CircularIndeterminate />;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
+
   return (
     <div className="moreInfoContainer">
-      <div className="header">
-        <h2>{breed.name}</h2>
-      </div>
+      <div className="header">{breed && <h1>{breed.name}</h1>}</div>
+      <br />
       {breed && (
         <div className="moreInfoContent">
           <div className="bigImage">
-            {images[0] && <img src={images[0].url} alt="No image found" />}
+            {images[0] ? (
+              <img src={images[0].url} alt="Breed" />
+            ) : (
+              <CircularIndeterminate />
+            )}
           </div>
+
           <div className="list">
-            <h2>About {breed.name}</h2>
             <ul>
               <li>Breed: {breed.name}</li>
               <li>
@@ -65,6 +77,8 @@ const MoreInfo = () => {
               <li>History: {breed.history || "Unknown"}</li>
             </ul>
           </div>
+          <br />
+          <br />
         </div>
       )}
       <div className="footer">

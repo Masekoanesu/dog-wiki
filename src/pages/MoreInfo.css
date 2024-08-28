@@ -1,12 +1,53 @@
 body {
-  font-family: sans-serif;
+  background-color: #dad3cb;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .moreInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
   background-color: #dad3cb;
-  padding: 1rem;
+}
+
+.moreInfoContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.bigImage {
+  flex: 1 1 50%;
+  max-width: 50%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bigImage img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3 ease;
+}
+.bigImage img:hover {
+  transform: scale(1.1);
+}
+
+.list {
+  flex: 1 1 40%;
+  max-width: 40%;
+  text-align: left;
 }
 
 .header {
@@ -17,51 +58,91 @@ body {
 
 .header h2 {
   margin-left: 0.5rem;
-  font-size: 1.2rem;
-  color: black;
-}
-
-.moreInfoContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.bigImage {
-  width: 50%;
-  height: auto;
-  margin-bottom: 1rem;
-  margin-top: 4rem;
-}
-
-.bigImage img {
-  width: 100%;
-  height: auto;
-  display: block;
+  font-size: 28px;
+  color: #555;
 }
 
 .list h2 {
+  font-size: 28px;
+  color: #555;
   margin-bottom: 0.5rem;
-  color: black;
 }
 
 .list ul {
   list-style: none;
-  padding: 2px;
+  padding: 0;
 }
 
 .list li {
   margin-bottom: 0.3rem;
+  font-size: 16px;
   color: #333;
 }
 
+.navigateButton {
+  background-color: #383b48;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.navigateButton:hover {
+  background-color: #666;
+}
+
 .footer {
+  width: 100%;
   padding: 10px;
-  background-color: #f1f1f1;
+  color: #120a0a;
+  font-size: 14px;
   text-align: center;
-  border-top: 1px solid #ddd;
+  background-color: #f1f1f1;
   position: fixed;
   bottom: 0;
-  z-index: 1000;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .moreInfoContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bigImage,
+  .list {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .bigImage {
+    margin-top: 20px;
+  }
+
+  .header h2,
+  .list h2 {
+    font-size: 24px;
+  }
+
+  .list li {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h2,
+  .list h2 {
+    font-size: 20px;
+  }
+
+  .list li {
+    font-size: 12px;
+  }
+
+  .footer {
+    font-size: 10px;
+    padding: 15px;
+  }
 }

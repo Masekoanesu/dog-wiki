@@ -91,6 +91,8 @@ function Explore() {
           />
         </Stack>
       </div>
+      <br />
+      <br />
       {loadingImages && (
         <Box sx={{ width: "100%", marginBottom: 2 }}>
           <LinearProgress
