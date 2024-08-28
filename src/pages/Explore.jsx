@@ -7,18 +7,23 @@ import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
+import LinearProgress from "@mui/material/LinearProgress";
+import Box from "@mui/material/Box";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
   const [images, setImages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBreeds, setFilteredBreeds] = useState([]);
+  const [loadingImages, setLoadingImages] = useState(true); // Add loadingImages state
 
   useEffect(() => {
     async function loadData() {
       const breedData = await fetchBreeds();
       setBreeds(breedData);
+      setFilteredBreeds(breedData);
 
+      setLoadingImages(true);
       const imagePromises = breedData.map(async (breed) => {
         const imageData = await fetchImagesByBreed(breed.id);
         return { breed, image: imageData[0] };
@@ -31,7 +36,7 @@ function Explore() {
       }, {});
 
       setImages(imageMap);
-      setFilteredBreeds(breedData);
+      setLoadingImages(false);
     }
 
     loadData();
@@ -59,16 +64,53 @@ function Explore() {
             value={searchQuery}
             onInputChange={handleSearchChange}
             renderInput={(params) => (
-              <TextField {...params} label="Search for dog breed" />
+              <TextField
+                {...params}
+                label="Search for dog breed"
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    color: "#A9A9A9", // text color
+                    "&.Mui-focused": {
+                      color: "black", // text color when field selected
+                    },
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#A9A9A9", // border color default
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "black", // border hover color
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "black", // border when selected
+                    },
+                  },
+                }}
+              />
             )}
           />
         </Stack>
       </div>
+      <br />
+      <br />
+      {loadingImages && (
+        <Box sx={{ width: "100%", marginBottom: 2 }}>
+          <LinearProgress
+            sx={{
+              backgroundColor: "#89909F",
+              "& .MuiLinearProgress-bar": {
+                backgroundColor: "#e0e0e0",
+              },
+            }}
+          />
+        </Box>
+      )}
       <div className="dogList">
         {filteredBreeds.map((breed) => (
           <div key={breed.id} className="dogItem">
-            <Link to="/MoreInfo">
+            <Link to={`/MoreInfo/${breed.id}`}>
               <h2>{breed.name}</h2>
+              <p>{breed.temperament}</p>
               {images[breed.id] && (
                 <img
                   src={images[breed.id].url}
@@ -76,11 +118,11 @@ function Explore() {
                   className="dogImage"
                 />
               )}
-              <p>{breed.temperament}</p>
             </Link>
           </div>
         ))}
       </div>
+
       <footer className="footer">
         <p>
           <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />{" "}

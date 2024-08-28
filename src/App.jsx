@@ -13,7 +13,7 @@ function App() {
           <Route path="/LandingPage" element={<LandingPage />} />
           {/* <Route path="/SignUp" element={<SignUp />} /> */}
           <Route path="/Explore" element={<Explore />} />
-          <Route path="/MoreInfo" element={<MoreInfo />} />
+          <Route path="/MoreInfo/:breedId" element={<MoreInfo />} />
           {/* Keep this route below all other routes. If desired route does not exist above, navigate to /home */}
           <Route path="*" element={<Navigate to="/LandingPage" />} />
         </Routes>

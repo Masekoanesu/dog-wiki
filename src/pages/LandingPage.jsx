@@ -12,10 +12,6 @@ function LandingPage() {
     <div className="Container">
       <h1>Welcome to Dogs 101</h1>
       <div className="mainContent">
-        {/* <p>
-            Discover Every Dog Breed and Learn About Their Unique
-            Characteristics
-          </p> */}
         <img src="https://th.bing.com/th/id/OIP.MtHeHyNlk8Rc-VOtLwD_CQHaLG?rs=1&pid=ImgDetMain" />
         <div className="content">
           <h2>Why Learn About Dog Breeds?</h2>
