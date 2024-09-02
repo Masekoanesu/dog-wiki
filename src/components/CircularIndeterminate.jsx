@@ -11,7 +11,7 @@ const CircularIndeterminate = () => {
         height: "100vh",
       }}
     >
-      <CircularProgress />
+      <CircularProgress sx={{ color: "#9e9e9e" }} />
     </Box>
   );
 };

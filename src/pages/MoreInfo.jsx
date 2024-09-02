@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../components/sharedHeader";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
@@ -48,7 +49,11 @@ const MoreInfo = () => {
 
   return (
     <div className="moreInfoContainer">
-      <div className="header">{breed && <h1>{breed.name}</h1>}</div>
+      <br />
+      <b />
+      <div className="header">
+        <Header />
+      </div>
       <br />
       {breed && (
         <div className="moreInfoContent">
@@ -62,6 +67,7 @@ const MoreInfo = () => {
 
           <div className="list">
             <ul>
+              <h1>{breed.name}</h1>
               <li>Breed: {breed.name}</li>
               <li>
                 Height: imperial "{breed.height.imperial}" and metric "

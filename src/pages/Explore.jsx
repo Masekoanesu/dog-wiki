@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchBreeds, fetchImagesByBreed } from "./FetchingData";
 import { Link } from "react-router-dom";
+import Header from "../components/sharedHeader";
 import "../pages/Explore.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
@@ -9,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
+import { Skeleton } from "@mui/material";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
@@ -55,7 +57,10 @@ function Explore() {
 
   return (
     <div className="container">
+      <Header />
       <div className="header">
+        <br />
+        <br />
         <h1>Dog Breeds with Images</h1>
         <Stack spacing={2} sx={{ width: 300 }}>
           <Autocomplete
@@ -110,14 +115,21 @@ function Explore() {
           <div key={breed.id} className="dogItem">
             <Link to={`/MoreInfo/${breed.id}`}>
               <h2>{breed.name}</h2>
-              <p>{breed.temperament}</p>
-              {images[breed.id] && (
+              {images[breed.id] ? (
                 <img
                   src={images[breed.id].url}
                   alt={breed.name}
                   className="dogImage"
                 />
+              ) : (
+                <Skeleton
+                  variant="rectangular"
+                  width={320}
+                  height={300}
+                  sx={{ bgcolor: "grey.300" }}
+                />
               )}
+              <p>{breed.temperament}</p>
             </Link>
           </div>
         ))}
