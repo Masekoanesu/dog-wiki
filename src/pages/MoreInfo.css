@@ -3,22 +3,25 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  /* display: flex;
-  justify-content: center; */
   align-items: center;
   height: 100vh;
+  color: #333;
 }
+.header {
+  background-color: #f1f1f1;
+}
+
 .header h1 {
   font-size: 3rem;
   font-weight: 900;
+  color: #333;
 }
+
 .moreInfoContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  background-color: #dad3cb;
-  border-radius: 10px;
 }
 
 .moreInfoContent {
@@ -26,17 +29,17 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: left;
   gap: 40px;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  padding: 20px;
 }
 
 .bigImage {
   flex: 1 1 50%;
   max-width: 50%;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .bigImage img {
@@ -47,6 +50,7 @@ body {
   border-radius: 10px;
   transition: transform 0.3s ease;
 }
+
 .bigImage img:hover {
   transform: scale(1.1);
 }
@@ -54,42 +58,38 @@ body {
 .list {
   flex: 1 1 40%;
   max-width: 40%;
-  text-align: left;
+  padding-left: 20px;
+  border-left: 4px solid#735751;
+}
+
+.list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list h1 {
+  font-size: 2.5rem;
+  color: #444;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .list li {
-  margin-bottom: 0.5rem;
-  font-size: 18px;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
-}
-.carouselContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  color: #444;
 }
 
-.arrow {
-  cursor: pointer;
-  font-size: 2rem;
-  padding: 0 20px;
-  color: #333;
-}
-
-.arrow:hover {
-  color: #000;
-}
-
-.imageCarousel img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
+.list li span {
+  color: #3d405b;
+  font-weight: normal;
 }
 
 .footer {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   color: #120a0a;
   font-size: 14px;
   text-align: center;
@@ -115,18 +115,27 @@ body {
     margin-top: 20px;
   }
 
+  .list {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .list h1 {
+    font-size: 2rem;
+  }
+
   .list li {
-    font-size: 14px;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .list li {
-    font-size: 12px;
+    font-size: 0.9rem;
   }
 
   .footer {
-    font-size: 10px;
-    padding: 15px;
+    font-size: 12px;
+    padding: 10px;
   }
 }

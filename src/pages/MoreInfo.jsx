@@ -3,7 +3,17 @@ import { useParams } from "react-router-dom";
 import Header from "../components/sharedHeader";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPaw,
+  faRulerVertical,
+  faHeart,
+  faDog,
+  faFileAlt,
+  faSmile,
+  faUsers,
+  faHistory,
+  faGlobe,
+} from "@fortawesome/free-solid-svg-icons";
 import CircularIndeterminate from "../components/CircularIndeterminate";
 import "./MoreInfo.css";
 
@@ -68,19 +78,56 @@ const MoreInfo = () => {
           <div className="list">
             <ul>
               <h1>{breed.name}</h1>
-              <li>Breed: {breed.name}</li>
+
               <li>
+                <FontAwesomeIcon
+                  icon={faRulerVertical}
+                  style={{ color: "#735751" }}
+                />{" "}
                 Height: imperial "{breed.height.imperial}" and metric "
                 {breed.height.metric}"
               </li>
+
               <li>
+                <FontAwesomeIcon
+                  icon={faFileAlt}
+                  style={{ color: "#735751" }}
+                />{" "}
                 Description: {breed.description || "Description unavailable"}
               </li>
-              <li>Bred For: {breed.bred_for || "Unknown"}</li>
-              <li>Breed Group: {breed.breed_group || "Unknown"}</li>
-              <li>Life Span: {breed.life_span || "Unknown"}</li>
-              <li>Temperament: {breed.temperament || "Unknown"}</li>
-              <li>History: {breed.history || "Unknown"}</li>
+
+              <li>
+                <FontAwesomeIcon icon={faDog} style={{ color: "#735751" }} />{" "}
+                Bred For: {breed.bred_for || "Unknown"}
+              </li>
+
+              <li>
+                <FontAwesomeIcon icon={faUsers} style={{ color: "#735751" }} />{" "}
+                Breed Group: {breed.breed_group || "Unknown"}
+              </li>
+
+              <li>
+                <FontAwesomeIcon icon={faHeart} style={{ color: "#735751" }} />{" "}
+                Life Span: {breed.life_span || "Unknown"}
+              </li>
+
+              <li>
+                <FontAwesomeIcon icon={faSmile} style={{ color: "#735751" }} />{" "}
+                Temperament: {breed.temperament || "Unknown"}
+              </li>
+
+              <li>
+                <FontAwesomeIcon
+                  icon={faHistory}
+                  style={{ color: "#735751" }}
+                />{" "}
+                History: {breed.history || "Unknown"}
+              </li>
+
+              <li>
+                <FontAwesomeIcon icon={faGlobe} style={{ color: "#735751" }} />{" "}
+                Origin: {breed.origin || "Unknown"}
+              </li>
             </ul>
           </div>
           <br />

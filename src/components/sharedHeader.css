@@ -16,9 +16,10 @@
 
 .headerText {
   margin-left: 10px;
-  color: black;
+  color: #0d0f12;
   font-size: 1.5rem;
   font-weight: bold;
+  font-family: "Poppins";
 }
 
 @media (max-width: 768px) {

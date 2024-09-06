@@ -17,7 +17,7 @@ function Explore() {
   const [images, setImages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBreeds, setFilteredBreeds] = useState([]);
-  const [loadingImages, setLoadingImages] = useState(true); // Add loadingImages state
+  const [loadingImages, setLoadingImages] = useState(true);
 
   useEffect(() => {
     async function loadData() {
