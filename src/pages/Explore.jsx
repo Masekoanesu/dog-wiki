@@ -57,59 +57,64 @@ function Explore() {
 
   return (
     <div className="container">
-      <Header />
-      <div className="header">
-        <br />
-        <br />
-        <h1>Dog Breeds with Images</h1>
-        <Stack spacing={2} sx={{ width: 300 }}>
-          <Autocomplete
-            freeSolo
-            options={breeds.map((breed) => breed.name)}
-            value={searchQuery}
-            onInputChange={handleSearchChange}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search for dog breed"
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: "#A9A9A9", // text color
-                    "&.Mui-focused": {
-                      color: "black", // text color when field selected
+      <div className="allHeaderStuff">
+        <Header />
+        {loadingImages && (
+          <Box
+            sx={{
+              width: "100%",
+              // marginBottom: 2,
+              marginTop: 4,
+            }}
+          >
+            <LinearProgress
+              sx={{
+                backgroundColor: "#89909F",
+                "& .MuiLinearProgress-bar": {
+                  backgroundColor: "#e0e0e0",
+                },
+              }}
+            />
+          </Box>
+        )}
+        <div className="subHeader">
+          <h1>Man’s best friend</h1>
+          <Stack spacing={2} sx={{ width: 300 }}>
+            <Autocomplete
+              freeSolo
+              options={breeds.map((breed) => breed.name)}
+              value={searchQuery}
+              onInputChange={handleSearchChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search for dog breed"
+                  sx={{
+                    "& .MuiInputLabel-root": {
+                      color: "#A9A9A9", // text color
+                      "&.Mui-focused": {
+                        color: "black", // text color when field selected
+                      },
                     },
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "#A9A9A9", // border color default
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "#A9A9A9", // border color default
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "black", // border hover color
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "black", // border when selected
+                      },
                     },
-                    "&:hover fieldset": {
-                      borderColor: "black", // border hover color
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "black", // border when selected
-                    },
-                  },
-                }}
-              />
-            )}
-          />
-        </Stack>
+                  }}
+                />
+              )}
+            />
+          </Stack>
+        </div>
       </div>
       <br />
-      <br />
-      {loadingImages && (
-        <Box sx={{ width: "100%", marginBottom: 2 }}>
-          <LinearProgress
-            sx={{
-              backgroundColor: "#89909F",
-              "& .MuiLinearProgress-bar": {
-                backgroundColor: "#e0e0e0",
-              },
-            }}
-          />
-        </Box>
-      )}
       <div className="dogList">
         {filteredBreeds.map((breed) => (
           <div key={breed.id} className="dogItem">

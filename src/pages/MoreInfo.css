@@ -3,97 +3,94 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  align-items: center;
-  height: 100vh;
   color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
 .header {
   background-color: #f1f1f1;
 }
 
-.header h1 {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #333;
-}
-
 .moreInfoContainer {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  padding: 20px;
+}
+
+.backToListView {
+  width: 100%;
+  text-align: left;
+  padding: 10px 0;
+  margin-left: 10px;
+  margin-top: 50px;
 }
 
 .moreInfoContent {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-  gap: 40px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
-.bigImage {
-  flex: 1 1 50%;
-  max-width: 50%;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 40px;
 }
 
 .bigImage img {
-  width: 100%;
-  height: auto;
+  width: 60%;
+  height: 2000px;
   max-height: 500px;
-  display: block;
   border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.bigImage img:hover {
-  transform: scale(1.1);
 }
 
 .list {
-  flex: 1 1 40%;
   max-width: 40%;
   padding-left: 20px;
-  border-left: 4px solid#735751;
+  text-align: left;
 }
 
 .list ul {
   list-style-type: none;
   padding: 0;
+  font-size: 1.2rem;
+  color: "#333";
 }
 
 .list h1 {
   font-size: 2.5rem;
   color: #444;
   margin-bottom: 20px;
-  text-transform: capitalize;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.list li {
-  margin-bottom: 0.8rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #444;
+.navButton {
+  cursor: pointer;
 }
 
-.list li span {
-  color: #3d405b;
-  font-weight: normal;
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  padding: 30px;
+}
+
+.leftArrow {
+  left: 0;
+}
+
+.rightArrow {
+  right: 0;
 }
 
 .footer {
+  background-color: #f1f1f1;
   width: 100%;
   padding: 15px;
-  color: #120a0a;
-  font-size: 14px;
   text-align: center;
-  background-color: #f1f1f1;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -108,34 +105,10 @@ body {
   .bigImage,
   .list {
     max-width: 100%;
-    flex: 1 1 100%;
-  }
-
-  .bigImage {
-    margin-top: 20px;
+    text-align: center;
   }
 
   .list {
     padding-left: 0;
-    border-left: none;
-  }
-
-  .list h1 {
-    font-size: 2rem;
-  }
-
-  .list li {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .list li {
-    font-size: 0.9rem;
-  }
-
-  .footer {
-    font-size: 12px;
-    padding: 10px;
   }
 }

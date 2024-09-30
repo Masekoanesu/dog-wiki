@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/sharedHeader";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowLeft,
+  faArrowRight,
   faPaw,
   faRulerVertical,
   faHeart,
@@ -23,6 +25,8 @@ const MoreInfo = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [allBreeds, setAllBreeds] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadBreedData() {
@@ -32,6 +36,7 @@ const MoreInfo = () => {
       try {
         const breedData = await fetchBreeds();
         const selectedBreed = breedData.find((b) => b.id === parseInt(breedId));
+        setAllBreeds(breedData);
 
         if (selectedBreed) {
           setBreed(selectedBreed);
@@ -49,6 +54,30 @@ const MoreInfo = () => {
 
     loadBreedData();
   }, [breedId]);
+
+  const handleNext = () => {
+    const currentDogIndex = allBreeds.findIndex(
+      (b) => b.id === parseInt(breedId)
+    );
+    const nextBreedIndex = (currentDogIndex + 1) % allBreeds.length;
+    const nextBreedId = allBreeds[nextBreedIndex].id;
+    navigate(`/MoreInfo/${nextBreedId}`);
+  };
+
+  const handlePrevious = () => {
+    const currentDogIndex = allBreeds.findIndex(
+      (b) => b.id === parseInt(breedId)
+    );
+    const previousBreedIndex =
+      (currentDogIndex - 1 + allBreeds.length) % allBreeds.length;
+    const previousBreedId = allBreeds[previousBreedIndex].id;
+    navigate(`/MoreInfo/${previousBreedId}`);
+  };
+
+  const navigateBackToList = () => {
+    navigate("/Explore");
+  };
+
   if (loading) {
     return <CircularIndeterminate />;
   }
@@ -59,17 +88,21 @@ const MoreInfo = () => {
 
   return (
     <div className="moreInfoContainer">
-      <br />
-      <b />
-      <div className="header">
-        <Header />
+      <Header />
+      <div className="backToListView" onClick={navigateBackToList}>
+        <p style={{ cursor: "pointer", color: "#735751" }}>
+          ← Back to Dog List
+        </p>
       </div>
-      <br />
       {breed && (
         <div className="moreInfoContent">
+          <div onClick={handlePrevious} className="navButton leftArrow">
+            <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+          </div>
+
           <div className="bigImage">
             {images[0] ? (
-              <img src={images[0].url} alt="Breed" />
+              <img src={images[0].url} />
             ) : (
               <CircularIndeterminate />
             )}
@@ -130,14 +163,16 @@ const MoreInfo = () => {
               </li>
             </ul>
           </div>
-          <br />
-          <br />
+
+          <div onClick={handleNext} className="navButton rightArrow">
+            <FontAwesomeIcon icon={faArrowRight} size="2x" />
+          </div>
         </div>
       )}
       <div className="footer">
         <p>
-          <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />
-          2024 Dogs 101. All rights reserved.
+          <FontAwesomeIcon icon={faPaw} size="xs" /> 2024 Dogs 101. All rights
+          reserved.
         </p>
       </div>
     </div>
