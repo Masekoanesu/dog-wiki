@@ -32,17 +32,29 @@ body {
 .moreInfoContent {
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  /* align-items: center; */
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin-top: 20px;
+  padding: 40px;
+  box-shadow: 2px 2px 2px 2px #8f665d;
+  border-radius: 10px;
+}
+
+.divider {
+  width: 6px;
+  background-color: #8f665d;
+  margin-right: 80px;
+  height: auto;
+  align-self: stretch;
 }
 
 .bigImage img {
-  width: 60%;
-  height: 2000px;
+  width: 70%;
+  height: 90%;
   max-height: 500px;
   border-radius: 10px;
+  /* border-left: 155px solid black; */
 }
 
 .list {

@@ -107,6 +107,8 @@ const MoreInfo = () => {
               <CircularIndeterminate />
             )}
           </div>
+          <style></style>
+          <div className="divider"></div>
 
           <div className="list">
             <ul>
