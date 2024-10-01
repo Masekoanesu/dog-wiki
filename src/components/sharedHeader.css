@@ -1,0 +1,37 @@
+.header {
+  background-color: #dad3cb;
+  /* padding: 0px 0px 0px 50px; */
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between;*/
+  padding-bottom: 50px;
+  position: fixed;
+  height: 60px;
+  top: 0;
+  left: 0;
+}
+
+.headerLink {
+  display: flex;
+  align-items: center;
+}
+
+.headerText {
+  margin-left: 10px;
+  color: #0d0f12;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "Poppins";
+}
+
+@media (max-width: 768px) {
+  .headerText {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerText {
+    font-size: 1rem;
+  }
+}

@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Header from "../components/sharedHeader";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faPaw,
+  faRulerVertical,
+  faHeart,
+  faDog,
+  faFileAlt,
+  faSmile,
+  faUsers,
+  faHistory,
+  faGlobe,
+} from "@fortawesome/free-solid-svg-icons";
 import CircularIndeterminate from "../components/CircularIndeterminate";
 import "./MoreInfo.css";
 
@@ -12,6 +25,8 @@ const MoreInfo = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [allBreeds, setAllBreeds] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadBreedData() {
@@ -21,6 +36,7 @@ const MoreInfo = () => {
       try {
         const breedData = await fetchBreeds();
         const selectedBreed = breedData.find((b) => b.id === parseInt(breedId));
+        setAllBreeds(breedData);
 
         if (selectedBreed) {
           setBreed(selectedBreed);
@@ -38,6 +54,30 @@ const MoreInfo = () => {
 
     loadBreedData();
   }, [breedId]);
+
+  const handleNext = () => {
+    const currentDogIndex = allBreeds.findIndex(
+      (b) => b.id === parseInt(breedId)
+    );
+    const nextBreedIndex = (currentDogIndex + 1) % allBreeds.length;
+    const nextBreedId = allBreeds[nextBreedIndex].id;
+    navigate(`/MoreInfo/${nextBreedId}`);
+  };
+
+  const handlePrevious = () => {
+    const currentDogIndex = allBreeds.findIndex(
+      (b) => b.id === parseInt(breedId)
+    );
+    const previousBreedIndex =
+      (currentDogIndex - 1 + allBreeds.length) % allBreeds.length;
+    const previousBreedId = allBreeds[previousBreedIndex].id;
+    navigate(`/MoreInfo/${previousBreedId}`);
+  };
+
+  const navigateBackToList = () => {
+    navigate("/Explore");
+  };
+
   if (loading) {
     return <CircularIndeterminate />;
   }
@@ -48,13 +88,21 @@ const MoreInfo = () => {
 
   return (
     <div className="moreInfoContainer">
-      <div className="header">{breed && <h1>{breed.name}</h1>}</div>
-      <br />
+      <Header />
+      <div className="backToListView" onClick={navigateBackToList}>
+        <p style={{ cursor: "pointer", color: "#735751" }}>
+          ← Back to Dog List
+        </p>
+      </div>
       {breed && (
         <div className="moreInfoContent">
+          <div onClick={handlePrevious} className="navButton leftArrow">
+            <FontAwesomeIcon icon={faArrowLeft} size="2x" />
+          </div>
+
           <div className="bigImage">
             {images[0] ? (
-              <img src={images[0].url} alt="Breed" />
+              <img src={images[0].url} />
             ) : (
               <CircularIndeterminate />
             )}
@@ -62,29 +110,101 @@ const MoreInfo = () => {
 
           <div className="list">
             <ul>
-              <li>Breed: {breed.name}</li>
+              <h1> {breed.name}</h1>
               <li>
-                Height: imperial "{breed.height.imperial}" and metric "
-                {breed.height.metric}"
+                <FontAwesomeIcon
+                  icon={faRulerVertical}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Height:{" "}
+                <span style={{ color: "#03256C" }}>
+                  imperial "{breed.height.imperial}"
+                </span>{" "}
+                and{" "}
+                <span style={{ color: "#03256C" }}>
+                  metric "{breed.height.metric}"
+                </span>
               </li>
               <li>
-                Description: {breed.description || "Description unavailable"}
+                <FontAwesomeIcon
+                  icon={faFileAlt}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Description:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.description || "Description unavailable"}
+                </span>
               </li>
-              <li>Bred For: {breed.bred_for || "Unknown"}</li>
-              <li>Breed Group: {breed.breed_group || "Unknown"}</li>
-              <li>Life Span: {breed.life_span || "Unknown"}</li>
-              <li>Temperament: {breed.temperament || "Unknown"}</li>
-              <li>History: {breed.history || "Unknown"}</li>
+              <li>
+                <FontAwesomeIcon icon={faDog} style={{ color: "#03256C" }} />{" "}
+                Bred For:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.bred_for || "Unknown"}
+                </span>
+              </li>
+              <li>
+                <FontAwesomeIcon icon={faUsers} style={{ color: "#03256C" }} />{" "}
+                Breed Group:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.breed_group || "Unknown"}
+                </span>
+              </li>{" "}
+              <li>
+                {" "}
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Life Span:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.life_span || "Unknown"}
+                </span>{" "}
+              </li>{" "}
+              <li>
+                {" "}
+                <FontAwesomeIcon
+                  icon={faSmile}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Temperament:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.temperament || "Unknown"}
+                </span>{" "}
+              </li>{" "}
+              <li>
+                {" "}
+                <FontAwesomeIcon
+                  icon={faHistory}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                History:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.history || "Unknown"}
+                </span>{" "}
+              </li>{" "}
+              <li>
+                {" "}
+                <FontAwesomeIcon
+                  icon={faGlobe}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Origin:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.origin || "Unknown"}
+                </span>{" "}
+              </li>
             </ul>
           </div>
-          <br />
-          <br />
+
+          <div onClick={handleNext} className="navButton rightArrow">
+            <FontAwesomeIcon icon={faArrowRight} size="2x" />
+          </div>
         </div>
       )}
       <div className="footer">
         <p>
-          <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />
-          2024 Dogs 101. All rights reserved.
+          <FontAwesomeIcon icon={faPaw} size="xs" /> 2024 Dogs 101. All rights
+          reserved.
         </p>
       </div>
     </div>

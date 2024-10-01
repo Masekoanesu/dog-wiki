@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import "../pages/LandingPage.css";
+import Header from "../components/sharedHeader";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -10,9 +11,10 @@ function LandingPage() {
 
   return (
     <div className="Container">
+      <Header />
       <h1>Welcome to Dogs 101</h1>
       <div className="mainContent">
-        <img src="https://th.bing.com/th/id/OIP.MtHeHyNlk8Rc-VOtLwD_CQHaLG?rs=1&pid=ImgDetMain" />
+        <img src="https://i.pinimg.com/236x/9f/77/69/9f776960b5fe247c5cd748caaf53ccd8.jpg" />
         <div className="content">
           <h2>Why Learn About Dog Breeds?</h2>
           <h3>Find Your Perfect Match</h3>

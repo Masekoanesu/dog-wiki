@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchBreeds, fetchImagesByBreed } from "./FetchingData";
 import { Link } from "react-router-dom";
+import Header from "../components/sharedHeader";
 import "../pages/Explore.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
@@ -9,13 +10,14 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
+import { Skeleton } from "@mui/material";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
   const [images, setImages] = useState({});
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBreeds, setFilteredBreeds] = useState([]);
-  const [loadingImages, setLoadingImages] = useState(true); // Add loadingImages state
+  const [loadingImages, setLoadingImages] = useState(true);
 
   useEffect(() => {
     async function loadData() {
@@ -55,69 +57,84 @@ function Explore() {
 
   return (
     <div className="container">
-      <div className="header">
-        <h1>Dog Breeds with Images</h1>
-        <Stack spacing={2} sx={{ width: 300 }}>
-          <Autocomplete
-            freeSolo
-            options={breeds.map((breed) => breed.name)}
-            value={searchQuery}
-            onInputChange={handleSearchChange}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Search for dog breed"
-                sx={{
-                  "& .MuiInputLabel-root": {
-                    color: "#A9A9A9", // text color
-                    "&.Mui-focused": {
-                      color: "black", // text color when field selected
+      <div className="allHeaderStuff">
+        <Header />
+        {loadingImages && (
+          <Box
+            sx={{
+              width: "100%",
+              // marginBottom: 2,
+              marginTop: 4,
+            }}
+          >
+            <LinearProgress
+              sx={{
+                backgroundColor: "#89909F",
+                "& .MuiLinearProgress-bar": {
+                  backgroundColor: "#e0e0e0",
+                },
+              }}
+            />
+          </Box>
+        )}
+        <div className="subHeader">
+          <h1>Man’s best friend</h1>
+          <Stack spacing={2} sx={{ width: 300 }}>
+            <Autocomplete
+              freeSolo
+              options={breeds.map((breed) => breed.name)}
+              value={searchQuery}
+              onInputChange={handleSearchChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Search for dog breed"
+                  sx={{
+                    "& .MuiInputLabel-root": {
+                      color: "#A9A9A9", // text color
+                      "&.Mui-focused": {
+                        color: "black", // text color when field selected
+                      },
                     },
-                  },
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "#A9A9A9", // border color default
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "#A9A9A9", // border color default
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "black", // border hover color
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "black", // border when selected
+                      },
                     },
-                    "&:hover fieldset": {
-                      borderColor: "black", // border hover color
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "black", // border when selected
-                    },
-                  },
-                }}
-              />
-            )}
-          />
-        </Stack>
+                  }}
+                />
+              )}
+            />
+          </Stack>
+        </div>
       </div>
       <br />
-      <br />
-      {loadingImages && (
-        <Box sx={{ width: "100%", marginBottom: 2 }}>
-          <LinearProgress
-            sx={{
-              backgroundColor: "#89909F",
-              "& .MuiLinearProgress-bar": {
-                backgroundColor: "#e0e0e0",
-              },
-            }}
-          />
-        </Box>
-      )}
       <div className="dogList">
         {filteredBreeds.map((breed) => (
           <div key={breed.id} className="dogItem">
             <Link to={`/MoreInfo/${breed.id}`}>
               <h2>{breed.name}</h2>
-              <p>{breed.temperament}</p>
-              {images[breed.id] && (
+              {images[breed.id] ? (
                 <img
                   src={images[breed.id].url}
                   alt={breed.name}
                   className="dogImage"
                 />
+              ) : (
+                <Skeleton
+                  variant="rectangular"
+                  width={320}
+                  height={300}
+                  sx={{ bgcolor: "grey.300" }}
+                />
               )}
+              <p>{breed.temperament}</p>
             </Link>
           </div>
         ))}
