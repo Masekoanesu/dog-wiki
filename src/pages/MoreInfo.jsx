@@ -110,56 +110,88 @@ const MoreInfo = () => {
 
           <div className="list">
             <ul>
-              <h1>{breed.name}</h1>
-
+              <h1> {breed.name}</h1>
               <li>
                 <FontAwesomeIcon
                   icon={faRulerVertical}
-                  style={{ color: "#735751" }}
+                  style={{ color: "#03256C" }}
                 />{" "}
-                Height: imperial "{breed.height.imperial}" and metric "
-                {breed.height.metric}"
+                Height:{" "}
+                <span style={{ color: "#03256C" }}>
+                  imperial "{breed.height.imperial}"
+                </span>{" "}
+                and{" "}
+                <span style={{ color: "#03256C" }}>
+                  metric "{breed.height.metric}"
+                </span>
               </li>
-
               <li>
                 <FontAwesomeIcon
                   icon={faFileAlt}
-                  style={{ color: "#735751" }}
+                  style={{ color: "#03256C" }}
                 />{" "}
-                Description: {breed.description || "Description unavailable"}
+                Description:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.description || "Description unavailable"}
+                </span>
               </li>
-
               <li>
-                <FontAwesomeIcon icon={faDog} style={{ color: "#735751" }} />{" "}
-                Bred For: {breed.bred_for || "Unknown"}
+                <FontAwesomeIcon icon={faDog} style={{ color: "#03256C" }} />{" "}
+                Bred For:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.bred_for || "Unknown"}
+                </span>
               </li>
-
               <li>
-                <FontAwesomeIcon icon={faUsers} style={{ color: "#735751" }} />{" "}
-                Breed Group: {breed.breed_group || "Unknown"}
-              </li>
-
+                <FontAwesomeIcon icon={faUsers} style={{ color: "#03256C" }} />{" "}
+                Breed Group:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.breed_group || "Unknown"}
+                </span>
+              </li>{" "}
               <li>
-                <FontAwesomeIcon icon={faHeart} style={{ color: "#735751" }} />{" "}
-                Life Span: {breed.life_span || "Unknown"}
-              </li>
-
+                {" "}
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Life Span:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.life_span || "Unknown"}
+                </span>{" "}
+              </li>{" "}
               <li>
-                <FontAwesomeIcon icon={faSmile} style={{ color: "#735751" }} />{" "}
-                Temperament: {breed.temperament || "Unknown"}
-              </li>
-
+                {" "}
+                <FontAwesomeIcon
+                  icon={faSmile}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Temperament:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.temperament || "Unknown"}
+                </span>{" "}
+              </li>{" "}
               <li>
+                {" "}
                 <FontAwesomeIcon
                   icon={faHistory}
-                  style={{ color: "#735751" }}
+                  style={{ color: "#03256C" }}
                 />{" "}
-                History: {breed.history || "Unknown"}
-              </li>
-
+                History:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.history || "Unknown"}
+                </span>{" "}
+              </li>{" "}
               <li>
-                <FontAwesomeIcon icon={faGlobe} style={{ color: "#735751" }} />{" "}
-                Origin: {breed.origin || "Unknown"}
+                {" "}
+                <FontAwesomeIcon
+                  icon={faGlobe}
+                  style={{ color: "#03256C" }}
+                />{" "}
+                Origin:{" "}
+                <span style={{ color: "#03256C" }}>
+                  {breed.origin || "Unknown"}
+                </span>{" "}
               </li>
             </ul>
           </div>

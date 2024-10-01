@@ -35,7 +35,7 @@ body {
   align-content: center;
   width: 100%;
   max-width: 1000px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .bigImage img {
@@ -54,13 +54,13 @@ body {
 .list ul {
   list-style-type: none;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: "#333";
 }
 
 .list h1 {
   font-size: 2.5rem;
-  color: #444;
+  color: #333;
   margin-bottom: 20px;
 }
 
