@@ -10,7 +10,8 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
-import { Skeleton } from "@mui/material";
+import { InputAdornment, Skeleton, inputAdornmentClasses } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
@@ -89,16 +90,24 @@ function Explore() {
                 <TextField
                   {...params}
                   label="Search for dog breed"
+                  InputProps={{
+                    ...params.InputProps,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   sx={{
                     "& .MuiInputLabel-root": {
-                      color: "#A9A9A9", // text color
+                      color: "black", // text color
                       "&.Mui-focused": {
                         color: "black", // text color when field selected
                       },
                     },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
-                        borderColor: "#A9A9A9", // border color default
+                        borderColor: "black", // border color default
                       },
                       "&:hover fieldset": {
                         borderColor: "black", // border hover color

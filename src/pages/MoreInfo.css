@@ -23,6 +23,8 @@ body {
 
 .backToListView {
   width: 100%;
+  font-weight: bolder;
+  font-size: larger;
   text-align: left;
   padding: 10px 0;
   margin-left: 10px;
