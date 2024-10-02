@@ -50,13 +50,16 @@ body {
   height: auto;
   align-self: stretch;
 }
-
+.bigImage {
+  display: flex;
+  align-items: center;
+}
 .bigImage img {
   width: 70%;
   height: 90%;
   max-height: 500px;
-  border-radius: 10px;
-  /* border-left: 155px solid black; */
+  border-radius: 40px;
+  padding: 8px;
 }
 
 .list {

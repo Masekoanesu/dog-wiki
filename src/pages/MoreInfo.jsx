@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Skeleton } from "@mui/material";
 import Header from "../components/sharedHeader";
 import { fetchBreeds, fetchImagesByBreed } from "../pages/FetchingData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,6 +24,7 @@ const MoreInfo = () => {
   const { breedId } = useParams();
   const [breed, setBreed] = useState(null);
   const [images, setImages] = useState([]);
+  const [imageIndex, setImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [allBreeds, setAllBreeds] = useState([]);
@@ -40,7 +42,7 @@ const MoreInfo = () => {
 
         if (selectedBreed) {
           setBreed(selectedBreed);
-          const breedImages = await fetchImagesByBreed(breedId);
+          const breedImages = await fetchImagesByBreed(breedId, 5);
           setImages(breedImages);
         } else {
           setError("Breed not found");
@@ -74,6 +76,18 @@ const MoreInfo = () => {
     navigate(`/MoreInfo/${previousBreedId}`);
   };
 
+  // go to next image
+  const handleNextImage = () => {
+    setImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  // go to prev image
+  const handlePreviousImage = () => {
+    setImageIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
   const navigateBackToList = () => {
     navigate("/Explore");
   };
@@ -101,13 +115,36 @@ const MoreInfo = () => {
           </div>
 
           <div className="bigImage">
-            {images[0] ? (
-              <img src={images[0].url} />
+            {images.length > 0 ? (
+              <>
+                <button
+                  onClick={handlePreviousImage}
+                  className="carouselButton"
+                  iconClass="fas fa-chevron-left"
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} size="lg" />
+                </button>
+
+                <img src={images[imageIndex].url} alt={breed.name} />
+
+                <button
+                  onClick={handleNextImage}
+                  className="carouselButton"
+                  iconClass="fas fa-chevron-right"
+                >
+                  <FontAwesomeIcon icon={faArrowRight} size="lg" />
+                </button>
+              </>
             ) : (
-              <CircularIndeterminate />
+              <Skeleton
+                variant="rectangular"
+                width={320}
+                height={300}
+                sx={{ bgcolor: "grey.300" }}
+              />
             )}
           </div>
-          <style></style>
+
           <div className="divider"></div>
 
           <div className="list">
