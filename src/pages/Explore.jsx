@@ -151,7 +151,7 @@ function Explore() {
       <footer className="footer">
         <p>
           <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />{" "}
-          2024 Dogs 101. All rights reserved.
+          2024 Woof Wiki. All rights reserved.
         </p>
       </footer>
     </div>

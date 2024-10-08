@@ -204,7 +204,7 @@ const MoreInfo = () => {
       )}
       <div className="footer">
         <p>
-          <FontAwesomeIcon icon={faPaw} size="xs" /> 2024 Dogs 101. All rights
+          <FontAwesomeIcon icon={faPaw} size="xs" /> 2024 Woof Wiki. All rights
           reserved.
         </p>
       </div>
