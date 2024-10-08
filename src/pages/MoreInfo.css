@@ -19,6 +19,10 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  margin-top: -10px;
+  min-height: 100vh;
+  max-height: 400px;
+  margin: 0;
 }
 
 .backToListView {
@@ -33,52 +37,94 @@ body {
 
 .moreInfoContent {
   display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
   width: 100%;
   max-width: 1100px;
-  margin-top: 20px;
-  padding: 40px;
-  box-shadow: 2px 2px 2px 2px #8f665d;
-  border-radius: 10px;
 }
 
-.divider {
-  width: 6px;
-  background-color: #8f665d;
-  margin-right: 80px;
-  height: auto;
-  align-self: stretch;
-}
 .bigImage {
   display: flex;
+  justify-content: center;
   align-items: center;
+  position: relative;
+  width: 120%;
+  height: 600px;
 }
+
 .bigImage img {
-  width: 70%;
-  height: 90%;
-  max-height: 500px;
-  border-radius: 40px;
+  width: 100%;
+  height: 100;
+  object-fit: cover;
+  border-radius: 20px;
   padding: 8px;
+  box-shadow: 0 4px 10px rgba(131, 96, 96, 0.2);
 }
 
-.list {
-  max-width: 40%;
-  padding-left: 20px;
-  text-align: left;
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  color: #f1f1f1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #f1f1f1;
+  transition: background-color 0.3s ease;
 }
 
-.list ul {
+.carouselButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carouselButton:first-of-type {
+  left: 0;
+}
+
+.carouselButton:last-of-type {
+  right: 0;
+}
+
+.breedDetails {
+  display: flex;
+  flex-basis: 110%;
+  margin: 50px;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.breedDetails h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #033f63;
+  text-decoration: underline;
+}
+
+.breedDetails ul {
   list-style-type: none;
   padding: 0;
-  font-size: 1.5rem;
-  color: "#333";
+  margin: 0;
 }
 
-.list h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
+.breedDetails li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.breedDetails .icon {
+  margin-right: 8px;
+  color: #96705b;
+}
+
+.breedDetails span {
+  font-weight: bold;
+  color: #133c55;
+  margin-left: 4px;
 }
 
 .navButton {

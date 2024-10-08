@@ -4,13 +4,18 @@ import { Link } from "react-router-dom";
 import Header from "../components/sharedHeader";
 import "../pages/Explore.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import { faPaw, faUpload } from "@fortawesome/free-solid-svg-icons";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
-import { InputAdornment, Skeleton, inputAdornmentClasses } from "@mui/material";
+import {
+  InputAdornment,
+  Skeleton,
+  inputAdornmentClasses,
+  toggleButtonGroupClasses,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 function Explore() {
@@ -19,6 +24,30 @@ function Explore() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredBreeds, setFilteredBreeds] = useState([]);
   const [loadingImages, setLoadingImages] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // The back-to-top button is hidden at the beginning
+  useEffect(() => {
+    const toggleVisibility = () => {
+      console.log("Scroll Position:", window.pageYOffset); // Log current scroll position
+      if (window.pageYOffset > 30) {
+        setIsVisible(true);
+        console.log("Button should be visible");
+      } else {
+        setIsVisible(false);
+        console.log("Button should be hidden");
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  // This function will scroll the window to the top
+  const scrollToTop = () => {
+    console.log("Scrolling to top!"); // Confirm the function is triggered
+    window.scrollTo(0, 0); // Instant scroll to top
+  };
 
   useEffect(() => {
     async function loadData() {
@@ -138,8 +167,8 @@ function Explore() {
               ) : (
                 <Skeleton
                   variant="rectangular"
-                  width={320}
-                  height={300}
+                  width={"100%"}
+                  height={"250px"}
                   sx={{ bgcolor: "grey.300" }}
                 />
               )}
@@ -148,12 +177,12 @@ function Explore() {
           </div>
         ))}
       </div>
-
       <footer className="footer">
         <p>
           <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />{" "}
           2024 Dogs 101. All rights reserved.
         </p>
+        {isVisible && <button onClick={scrollToTop}>up</button>}
       </footer>
     </div>
   );
