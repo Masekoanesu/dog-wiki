@@ -12,7 +12,7 @@ function LandingPage() {
   return (
     <div className="Container">
       <Header />
-      <h1>Welcome to Dogs 101</h1>
+      <h1>Welcome to Woof Wiki</h1>
       <div className="mainContent">
         <img src="https://i.pinimg.com/236x/9f/77/69/9f776960b5fe247c5cd748caaf53ccd8.jpg" />
         <div className="content">
@@ -41,7 +41,7 @@ function LandingPage() {
       <footer className="footer">
         <p>
           <FontAwesomeIcon icon={faPaw} size="xs" style={{ color: "black" }} />{" "}
-          2024 Dogs 101. All rights reserved.
+          2024 Woof Wiki. All rights reserved.
         </p>
       </footer>
     </div>

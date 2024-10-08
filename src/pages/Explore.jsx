@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 import Header from "../components/sharedHeader";
 import "../pages/Explore.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import { faPaw, faUpload } from "@fortawesome/free-solid-svg-icons";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
-import { Skeleton } from "@mui/material";
+import { InputAdornment, Skeleton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 function Explore() {
   const [breeds, setBreeds] = useState([]);
@@ -89,16 +90,24 @@ function Explore() {
                 <TextField
                   {...params}
                   label="Search for dog breed"
+                  InputProps={{
+                    ...params.InputProps,
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                   sx={{
                     "& .MuiInputLabel-root": {
-                      color: "#A9A9A9", // text color
+                      color: "black", // text color
                       "&.Mui-focused": {
                         color: "black", // text color when field selected
                       },
                     },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
-                        borderColor: "#A9A9A9", // border color default
+                        borderColor: "black", // border color default
                       },
                       "&:hover fieldset": {
                         borderColor: "black", // border hover color
@@ -129,8 +138,8 @@ function Explore() {
               ) : (
                 <Skeleton
                   variant="rectangular"
-                  width={320}
-                  height={300}
+                  width={"100%"}
+                  height={"250px"}
                   sx={{ bgcolor: "grey.300" }}
                 />
               )}
@@ -139,11 +148,10 @@ function Explore() {
           </div>
         ))}
       </div>
-
       <footer className="footer">
         <p>
           <FontAwesomeIcon icon={faPaw} size="1x" style={{ color: "black" }} />{" "}
-          2024 Dogs 101. All rights reserved.
+          2024 Woof Wiki. All rights reserved.
         </p>
       </footer>
     </div>

@@ -21,13 +21,16 @@ export async function fetchBreeds() {
   }
 }
 
-export async function fetchImagesByBreed(breedId) {
+export async function fetchImagesByBreed(breedId, limit = 3) {
   try {
-    const response = await fetch(`${imagesUrl}?breed_ids=${breedId}&limit=1`, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
+    const response = await fetch(
+      `${imagesUrl}?breed_ids=${breedId}&limit=${limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+        },
+      }
+    );
     if (!response.ok) {
       throw new Error(`API request failed with status: ${response.status}`);
     }
