@@ -119,36 +119,35 @@ const MoreInfo = () => {
             </div>
           </Tooltip>
           <div className="bigImage">
-            {images.length > 0 ? (
-              <>
-                <Tooltip title="Previous Image">
-                  <div
-                    onClick={handlePreviousBreedImage}
-                    className="carouselButton carouselButtonCircle"
-                  >
-                    <FontAwesomeIcon icon={faAngleLeft} size="2x" />
-                  </div>
-                </Tooltip>
+            <Tooltip title="Previous Image">
+              <div
+                onClick={handlePreviousBreedImage}
+                className="carouselButton carouselButtonCircle"
+              >
+                <FontAwesomeIcon icon={faAngleLeft} size="2x" />
+              </div>
+            </Tooltip>
+            <div className="image">
+              {images[breed.id] ? (
                 <img src={images[imageIndex].url} alt={breed.name} />
-                <Tooltip title="Next Image">
-                  <div
-                    onClick={handleNextBreedImage}
-                    className="carouselButton"
-                  >
-                    <FontAwesomeIcon icon={faAngleRight} size="2x" />
-                  </div>
-                </Tooltip>
-              </>
-            ) : (
-              <Skeleton
-                variant="rectangular"
-                width={320}
-                height={300}
-                sx={{ bgcolor: "grey.300" }}
-              />
-            )}
+              ) : (
+                <Skeleton
+                  variant="rectangular"
+                  width={320}
+                  height={300}
+                  sx={{ bgcolor: "grey.300" }}
+                />
+              )}
+              <div className="imageCounter">
+                {imageIndex + 1} / {images.length}
+              </div>
+            </div>
+            <Tooltip title="Next Image">
+              <div onClick={handleNextBreedImage} className="carouselButton">
+                <FontAwesomeIcon icon={faAngleRight} size="2x" />
+              </div>
+            </Tooltip>
           </div>
-          {/* <div className="divider"></div> */}
           <div className="breedDetails">
             <h1>{breed.name}</h1>
             <ul>
