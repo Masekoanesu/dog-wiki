@@ -52,7 +52,7 @@ function Explore() {
     setFilteredBreeds(results);
   }, [searchQuery, breeds]);
 
-  const handleSearchChange = (event, value) => {
+  const handleSearchChange = (value) => {
     setSearchQuery(value);
   };
 
